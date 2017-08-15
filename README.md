@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## How to use this template
@@ -24,3 +25,7 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+=======
+# Rest-Client
+A mobile app which lets you test rest APIs.
+>>>>>>> 46ad21623e3a6548252381e0e55afef19fb2ba69
