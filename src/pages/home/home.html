@@ -1,14 +1,30 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Home page
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <!-- request form component -->
+  <request-form (response)="onResponse($event)"></request-form>
+
 </ion-content>
+
+<ion-footer [hidden]="!responseArrived">
+
+  <div class="footer">
+
+    <div class="pad">
+      <ion-icon name="close" (click)="discardResponse()"></ion-icon>
+    </div>
+
+    <div (click)="showResponse()" class="pad">
+      <span>Response</span>
+    </div>
+
+  </div>
+
+</ion-footer>

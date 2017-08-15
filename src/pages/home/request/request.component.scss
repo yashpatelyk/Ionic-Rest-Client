@@ -1,0 +1,24 @@
+.requestForm{
+    .rLabel{
+        margin-left: 10px;
+    }
+    .headerChecked{
+        margin: auto 0;
+        padding: 0;
+        text-align: center;
+        flex: 0 0 20%;
+    }
+    .remove-hdr-btn{
+        text-align: center;
+        margin: auto;
+        flex: 0 0;
+        color: rgba(0,0,0,0.4);
+    }
+    .send-btn{
+        margin-top: 40px;
+        margin-left: 13px;
+    }
+    textarea{
+        width: 100%;
+    }
+}

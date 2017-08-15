@@ -1,3 +1,19 @@
 page-home {
 
+    .footer{
+
+        display: flex;
+        width: 100%;
+
+        span{
+            font-size: 16px;
+            margin-left: 20px;
+        }
+
+        .pad{
+            padding: 16px;
+        }
+
+    }
+
 }

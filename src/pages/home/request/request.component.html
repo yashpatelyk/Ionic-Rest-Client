@@ -1,0 +1,86 @@
+<div class="requestForm">
+
+    <form [formGroup]="requestForm">
+
+        <!-- Request method -->
+        <ion-item>
+            <ion-label class="rLabel">Method</ion-label>
+            <ion-select formControlName="method" interface="popover">
+                <ion-option *ngFor="let method of methods" [value]="method.toLowerCase()" (ionSelect)="methodChanged(method)">{{method}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- Request URL -->
+        <ion-item>
+            <ion-input type="text" formControlName="url" placeholder="Enter you URL"></ion-input>
+        </ion-item>
+
+        <!-- flag for headers -->
+        <ion-item>
+            <ion-label class="rLabel">Headers?</ion-label>
+            <ion-checkbox color="secondary" formControlName="hasHeaders"></ion-checkbox>
+        </ion-item>
+
+        <!-- Headers -->
+        <div [hidden]="!requestForm.value.hasHeaders">
+
+            <ion-grid>
+
+                <div formArrayName="headers" *ngFor="let h of headers.controls;let i=index">
+
+                    <ion-row [formGroupName]="i">
+
+                        <ion-col class="headerChecked">
+                            <ion-checkbox checked="true" formControlName="isActive"></ion-checkbox>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-input type="text" formControlName="key" placeholder="Key"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <ion-item>
+                                <ion-input type="text" formControlName="value" placeholder="Value"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col class="remove-hdr-btn">
+                            <ion-icon name="close-circle" (click)="removeHeader(i)"></ion-icon>
+                        </ion-col>
+
+                    </ion-row>
+
+                </div>
+
+            </ion-grid>
+
+            <button ion-item (click)="addNewHeader()">
+                <ion-icon name="add" color="secondary"></ion-icon>
+                Add new Header
+            </button>
+
+        </div>
+        <!-- headers end here -->
+
+        <!-- Flag for body -->
+        <ion-item>
+            <ion-label class="rLabel">Body?</ion-label>
+            <ion-checkbox 
+                color="secondary" 
+                formControlName="hasBody"
+                [disabled]="!canHaveBody">
+            </ion-checkbox>
+        </ion-item>
+
+        <!-- Body -->
+        <div [hidden]="!requestForm.value.hasBody">
+            <ion-item>
+                <textarea name="" id="" rows="10" formControlName="body"></textarea>
+            </ion-item>
+        </div>
+        <!-- Body ends here -->
+
+        <button ion-button type="submit" (click)="sendRequest()" class="send-btn">Send</button>
+
+    </form>
+
+</div>
