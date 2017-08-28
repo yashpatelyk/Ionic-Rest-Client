@@ -5,6 +5,7 @@ import { SUPPORTED_METHODS } from "../../../app/shared/constants/providers";
 import { Commons } from "../../../app/shared/utilities/commons";
 import { Framework } from "../../../app/shared/utilities/framework";
 import { ResponseComponent } from "../response/response.component";
+import { Messages } from "../../../app/shared/constants/messages";
 
 @Component({
     selector: 'request-form',
@@ -22,7 +23,8 @@ export class RequestComponent implements OnInit {
         key: '',
         value: ''
     };
-    canHaveBody: boolean = false
+    canHaveBody: boolean = false;
+    sendingRequest:boolean = false;
 
     constructor(
         private fb: FormBuilder,
@@ -49,6 +51,9 @@ export class RequestComponent implements OnInit {
     */
 
     public sendRequest(): void {
+
+        this.sendingRequest = true;
+
         var request: object = this.constructRequest();
 
         Commons.log("log", "request object is ", request);
@@ -62,21 +67,24 @@ export class RequestComponent implements OnInit {
                     Commons.log("", response);
                     var modal = this.framework.openModal(ResponseComponent, { "response": response });
                     this.response.emit({ "response": response, modal: modal });
+                    this.sendingRequest = false;
                 })
                 .catch(err => {
                     Commons.log("error", err);
                     this.framework.showAlert({
-                        title: "An error occured",
-                        message: "An error occured while processing you request",
+                        title: Messages.ERROR["title"],
+                        message: Messages.ERROR["subtitle"],
                         buttons: ['ok']
                     });
+                    this.sendingRequest = false;
                 });
         } else {
             this.framework.showAlert({
-                title: "No URL given!",
-                message: "Please give an URL to send request",
+                title: Messages.NOURL["title"],
+                message: Messages.NOURL["subtitle"],
                 buttons: ['ok']
             });
+            this.sendingRequest = false;
         }
     }
 
@@ -91,6 +99,8 @@ export class RequestComponent implements OnInit {
     public methodChanged(method): void {
         if (method.toLowerCase() == "get" || method.toLowerCase() == "delete") {
             this.canHaveBody = false;
+
+            // remove the check from checkbox
             this.requestForm.setControl("hasBody", new FormControl(false));
         } else {
             this.canHaveBody = true;

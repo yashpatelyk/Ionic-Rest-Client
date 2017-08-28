@@ -79,7 +79,7 @@
         </div>
         <!-- Body ends here -->
 
-        <button ion-button type="submit" (click)="sendRequest()" class="send-btn">Send</button>
+        <button ion-button type="submit" (click)="sendRequest()" class="send-btn" [disabled]="sendingRequest">Send</button>
 
     </form>
 

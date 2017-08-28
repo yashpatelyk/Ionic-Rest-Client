@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Framework } from "../../../app/shared/utilities/framework";
 import { Commons } from "../../../app/shared/utilities/commons";
 
+declare var formatJSON;
+
 @Component({
     selector: 'response-modal',
     templateUrl: 'response.component.html'
@@ -15,7 +17,9 @@ export class ResponseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.response = JSON.stringify(this.framework.getCurrentPageParams()["response"]);
+        var response = JSON.stringify(this.framework.getCurrentPageParams()["response"]);
+        let formatted = formatJSON(response);
+        this.response = formatted;
     }
 
 
