@@ -17,6 +17,7 @@ export class ResponseComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.response = "";
         var response = JSON.stringify(this.framework.getCurrentPageParams()["response"]);
         let formatted = formatJSON(response);
         this.response = formatted;
