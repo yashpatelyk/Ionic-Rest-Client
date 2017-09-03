@@ -1,6 +1,7 @@
 .content{
     .property{
-        color: green;
+        color: rgba(0,188,27,0.9);
+        margin-right: 5px;
     }
     .property::after{
         content: ":";
@@ -8,7 +9,8 @@
 
 
     .string{
-
+        color:rgba(100, 50, 264, 0.7);
+        font-weight: 500;
     }
     .string::before{
         content: "\"";
@@ -19,7 +21,8 @@
 
 
     .number{
-
+        color: rgba(0,129,300,0.7);
+        font-weight: 500;
     }
 
 
@@ -43,11 +46,21 @@
 
 
     .toggle{
-        font-size: 20px;
+        display: none;
+        font-size: 10px;
         border: 1px solid black;
+        margin-right: 10px;
+        opacity: 0.6;
+        padding: 0 3px;
+        background: rgba(0,0,0,0.2);
+        cursor: pointer;
     }
     .toggle::before{
         content: "-"
+    }
+
+    .placeholder{
+        display: none;
     }
 
 

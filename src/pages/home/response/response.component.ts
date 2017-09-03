@@ -3,6 +3,7 @@ import { Framework } from "../../../app/shared/utilities/framework";
 import { Commons } from "../../../app/shared/utilities/commons";
 
 declare var formatJSON;
+declare var enableAdditionalJSONFeatures;
 
 @Component({
     selector: 'response-modal',
@@ -21,6 +22,10 @@ export class ResponseComponent implements OnInit {
         var response = JSON.stringify(this.framework.getCurrentPageParams()["response"]);
         let formatted = formatJSON(response);
         this.response = formatted;
+    }
+
+    ngAfterViewInit(){
+        enableAdditionalJSONFeatures();
     }
 
 
